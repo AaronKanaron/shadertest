@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "Silhouetta";
+  src: url("./assets/fonts/SilhouettaDemoRegular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sifty";
+  src: url("./assets/fonts/SiftyDemo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Violet";
+  src: url("./assets/fonts/Violet Dreams DEMO.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bumerang";
+  src: url("./assets/fonts/BumerangDemoVersionRegular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Vintage";
+  src: url("./assets/fonts/VintageAgriqyDemo.otf") format("opentype"),
+      url("./asssets/fonts/VintageAgriqyDemo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  font-family: "Vintage";
+  font-size: 5rem;
+  margin: 0;
+  display: flex;
+  // position: absolute;
+  // text-transform: uppercase;
+}
