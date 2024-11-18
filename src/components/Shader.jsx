@@ -1,18 +1,55 @@
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { ShaderGradientCanvas, ShaderGradient } from '@shadergradient/react'
+import * as THREE from "three"
 
-export const Shader = React.forwardRef((props, ref) => {
+// const useZoomEffect = (scrollY, minZoom, maxZoom) => {
+//     const ref = useRef()
+
+//     useEffect(() => {
+//         // if (!ref.current) return;
+
+//         const canvas = ref.current;
+//         const scene = canvas.__r3f?.scene;
+//         const camera = canvas.__r3f?.camera;
+
+//         if (!scene || !camera) { print('no scene or camera'); return; };
+
+//         print('scene', scene);
+
+//     }, [scrollY])
+// }
+
+const SmoothShaderGradient = ({ scrollY}) => {
+    const canvasRef = useRef();
+
+
+    // const [zoom, setZoom] = useState(15.1);
+  
+    useEffect(() => {
+        // const targetZoom = 15.1 - (scrollY * 0.01);
+        // const newZoom = zoom + (targetZoom - zoom) * 0.1;
+        // setZoom(newZoom);
+
+        const container = canvasRef.current;
+        if (!container) { console.log('no container'); return; };
+
+        const scene = container.__r3f;
+        console.log('scene', scene);
+
+    }, [scrollY]);
+
     return (
         <ShaderGradientCanvas
             style={{
                 position: 'fixed',
-                zIndex: -1,
+                zIndex: 1,
                 top: 0,
-                pointerEvents: 'none',
+                // pointerEvents: 'none',
                 backgroundColor: 'black',
             }}
-            ref={ref}
+            pixelDensity={0.9}
+            ref={canvasRef}
         >
             {/* <ShaderGradient
             control='props'
@@ -67,11 +104,11 @@ export const Shader = React.forwardRef((props, ref) => {
                 control='props'
                 
                 type='sphere'
-                uStrength={0.3}
-                uDensity={0.2}
+                uStrength={0.5}
+                uDensity={0.3}
                 grain='on'
-                uFrequency={10}
-                uAmplitude={9}
+                uFrequency={12}
+                uAmplitude={4}
                 
                 color1='#5606FF'
                 color2='#FE8989'
@@ -79,7 +116,8 @@ export const Shader = React.forwardRef((props, ref) => {
                 
                 envPreset='city'
                 lightType='env'
-                brightness={0.5}
+                // brightness={3}
+                // reflection={2}
                 
         
                 // cameraZoom={10.1 - (scrollY * 6)}
@@ -95,7 +133,9 @@ export const Shader = React.forwardRef((props, ref) => {
             />
         </ShaderGradientCanvas>
     )
-})
+}
+
+export default SmoothShaderGradient
 
 // export const MotionShader = motion(Shader)
 
