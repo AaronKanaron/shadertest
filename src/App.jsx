@@ -1,6 +1,6 @@
 import './App.scss'
-import Scene from './components/Scene'
-
+import Scene from './components/hero/Scene'
+import BouncyDivider from './components/BouncyDivider'
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <main>
         <Scene />
       </main>
+        <BouncyDivider />
       <section>
       </section>
     </>
