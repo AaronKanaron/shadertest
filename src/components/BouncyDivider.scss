@@ -1,41 +1,48 @@
-.line {
-    height: 1px;
-    position: relative;
+.line-container{
     width: 100%;
-    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    svg{
-        position: absolute;
-        height: 100px;
-        width: 100%;
-        top: -50px;
+    .line {
+        height: 1px;
+        position: relative;
+        width: 70%;
+        margin-bottom: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
-
-        path{
-            stroke-width: 1px;
-            stroke: white;
-            fill: none;
+    
+        svg{
+            position: absolute;
+            height: 100px;
+            width: 100%;
+            top: -50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+            path{
+                stroke-width: 1px;
+                stroke: white;
+                fill: none;
+            }
         }
-    }
-
-    .box{
-        height: 40px;
-        width: 100%;
-        display: flex;
-        position: relative;
-        // top: -20px;
-        z-index: 1;
-
-        // outline: 1px solid red;
-
-        &:hover{
-            height: 150px;
-            // top: -75px;
+    
+        .box{
+            height: 40px;
+            width: 100%;
+            display: flex;
+            position: relative;
+            // top: -20px;
+            z-index: 1;
+    
+            // outline: 1px solid red;
+    
+            &:hover{
+                height: 150px;
+                // top: -75px;
+            }
         }
     }
 }

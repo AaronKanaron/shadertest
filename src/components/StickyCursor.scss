@@ -7,11 +7,41 @@
     pointer-events: none;
     z-index: 1000;
     mix-blend-mode: difference;
-    transition: background-color 0.1s ease, width 0.1s ease, height 0.1s ease;
+    transition: opacity 0.1s cubic-bezier(0.7, 0, 0.84, 0), width 0.1s ease, height 0.1s ease;
 
     &.arrow{
         background-color: white;
         width: 40px;
         height: 40px;
+        opacity: 0;
     }
 }
+
+.arrow-area-container{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .arrow-area {
+        position: relative;
+        // border: 1px solid green;
+        width: 400px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        color: grey;
+        cursor: pointer;
+        transition: color 0.1s ease, font-size 0.05s ease;
+
+        &.hovered{
+            color: white;
+            font-size: 2rem;
+        }
+    }
+  }

@@ -16,7 +16,6 @@ const BouncyDivider = () => {
 
         setPath(progress);
         reqId = requestAnimationFrame(animateIn);
-        console.log("animateIn");
     }
 
     const resetAnimation = () => {
@@ -27,7 +26,6 @@ const BouncyDivider = () => {
     const lerp = (x, y, a) => x * (1 - a) + y * a;
     
     const animateOut = () => {
-        console.log("animateOut");
         let newProgress = progress * Math.sin(time);
         setPath(newProgress);
 
@@ -49,7 +47,6 @@ const BouncyDivider = () => {
         const box = e.target.getBoundingClientRect();
         x = (e.clientX - box.left) / box.width;
         progress += movementY;
-        console.log(progress);
     }
 
     
@@ -61,16 +58,18 @@ const BouncyDivider = () => {
     }, [])
 
     const setPath = (value) => {
-        const width = window.innerWidth;
+        const width = window.innerWidth * 0.7;
         path.current.setAttributeNS(null, "d", `M 0 50 Q ${width * x} ${50 + value} ${width} 50`);
     }
 
     return (
-        <div className='line'>
-            <span className="box" onMouseEnter={() => {animateIn()}} onMouseLeave={() => {resetAnimation()}} onMouseMove={(e) => {manageMouseMove(e)}}></span>
-            <svg>
-                <path ref={path}></path>
-            </svg>
+        <div className="line-container">
+            <div className='line'>
+                <span className="box" onMouseEnter={() => {animateIn()}} onMouseLeave={() => {resetAnimation()}} onMouseMove={(e) => {manageMouseMove(e)}}></span>
+                <svg>
+                    <path ref={path}></path>
+                </svg>
+            </div>
         </div>
     )
 }

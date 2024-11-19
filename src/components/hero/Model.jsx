@@ -4,7 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 // import { useControls } from 'leva'
 
 export default function Model(props) {
-    const { nodes } = useGLTF('/aaronpixel.glb');
+    const { nodes } = useGLTF('https://aaronkanaron.github.io/shadertest/aaronpixel.glb');
     const { viewport, size } = useThree();
     const model = useRef(null);
 
@@ -21,6 +21,7 @@ export default function Model(props) {
             });
         };
         window.addEventListener('mousemove', handleMouseMove);
+        // window.addEventListener("scroll", handleMouseMove);
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
@@ -41,18 +42,18 @@ export default function Model(props) {
     });
 
     const materialProps = {
-        thickness: 1,
+        thickness: 2,
         // roughness: 0.35,
         roughness: 0.0,
         transmission: 1,
-        ior: 1.2,
+        ior: 1.3,
         chromaticAberration: 0.5,
         backside: true,
     }
 
     return (
         <group scale={viewport.width / 3.75} {...props} dispose={null}>
-            <Text maxWidth={3.52} textAlign="center" font={"/fonts/Italianno-Regular.ttf"} position={[0, 0, -1]} fontSize={0.8} color="white" anchorX="center" anchorY="middle">
+            <Text maxWidth={3.52} textAlign="center" font={"https://aaronkanaron.github.io/shadertest/fonts/Italianno-Regular.ttf"} position={[0, 0, -1]} fontSize={0.8} color="white" anchorX="center" anchorY="middle">
                 Aaron Clauss Portfolio 2024.
             </Text>
             <mesh ref={model} {...nodes.Text} >
@@ -62,4 +63,4 @@ export default function Model(props) {
     )
 }
 
-useGLTF.preload('/aaronpixel.glb')
+useGLTF.preload('https://aaronkanaron.github.io/shadertest/aaronpixel.glb')

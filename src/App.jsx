@@ -5,19 +5,21 @@ import BouncyDivider from './components/BouncyDivider'
 import StickyCursor from './components/StickyCursor'
 
 function App() {
-  const arrowArea = useRef(null);
+  // const arrowArea = useRef(null);
 
   return (
     <>  
-      <StickyCursor  arrowArea={arrowArea}/>
+      <StickyCursor />
 
       <main>
         <Scene />
-        <div className="arrow-area-container">
-          <div className="arrow-area" ref={arrowArea}/>
-        </div>
+        {/* <div className="arrow-area-container">
+          <div className="arrow-area" ref={arrowArea}>
+            Lets work
+          </div>
+        </div> */}
       </main>
-        <BouncyDivider />
+      <BouncyDivider />
       <section>
       </section>
     </>

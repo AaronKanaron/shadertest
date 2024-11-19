@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring, useVelocity } from "framer-motion";
 import "./StickyCursor.scss";
+import { animate, transform } from 'motion';
 
-export default function StickyCursor({arrowArea}) {
+export default function StickyCursor() {
+    const cursorSize = 15;
+    const cursor = useRef(null);
+
+    // const scale = {
+    //     x: useMotionValue(1),
+    //     y: useMotionValue(1),
+    // }
     
-    const [isArrow, setIsArrow] = useState(false);
-
-    const cursorSize = isArrow ? 40 : 15;
     const mouse = {
         x: useMotionValue(0),
         y: useMotionValue(0),
@@ -17,43 +22,45 @@ export default function StickyCursor({arrowArea}) {
         x: useSpring(mouse.x, smoothOptions),
         y: useSpring(mouse.y, smoothOptions),
     }
+    
 
     const manageMouseMove = e => {
         const { clientX, clientY } = e;
-        const { left, top, height, width } = arrowArea.current.getBoundingClientRect();
         
-        const center = {x: left + width / 2, y: top + height / 2};
-
-        if(isArrow) {
-            const distance = {x: clientX - center.x, y: clientY - (cursorSize / 2) - center.y};
-
-            mouse.x.set((center.x - cursorSize / 2) + (distance.x / 10));
-            mouse.y.set((center.y - cursorSize / 2) + (distance.y / 10));
-        } else {
-            mouse.x.set(clientX - cursorSize / 2);
-            mouse.y.set(clientY - cursorSize / 2);
-        }
+        mouse.x.set(clientX - cursorSize / 2);
+        mouse.y.set(clientY - cursorSize / 2);
     }
 
-    const manageMouseOver = e => {
-        setIsArrow(true);
+    const manageMousePress = () => {
+        animate(cursor.current, {
+            scale: 1.5,
+        }, {
+            duration: 0.05
+        }, {
+            type: "spring",
+            stiffness: 200,
+            damping: 10,
+        });
     }
 
-    const manageMouseLeave = e => {
-        setIsArrow(false);
+    const manageMouseRelease = () => {
+        animate(cursor.current, {
+            scale: 1,
+        }, {
+            duration: 0.2
+        }, {
+            ease: "easeIn"
+        });
     }
-
 
     useEffect(() => {
-        arrowArea.current.addEventListener("mouseover", manageMouseOver);
-        arrowArea.current.addEventListener("mouseleave", manageMouseLeave);
         window.addEventListener("mousemove", manageMouseMove);
+        window.addEventListener("mousedown", manageMousePress);
+        window.addEventListener("mouseup", manageMouseRelease);
         return () => {
             window.removeEventListener("mousemove", manageMouseMove);
-            arrowArea.current.removeEventListener("mouseover", manageMouseOver);
-            arrowArea.current.removeEventListener("mouseleave", manageMouseLeave);
         }
-    }, [isArrow]);
+    }, []);
     
     return (
         <div className='cursor-container'>
@@ -62,7 +69,8 @@ export default function StickyCursor({arrowArea}) {
                 left: smoothMouse.x,
                 top: smoothMouse.y,
             }} 
-            className={`cursor ${isArrow ? "arrow" : ""}`}
+            className={`cursor`}
+            ref={cursor}
             />
         </div>
     )
