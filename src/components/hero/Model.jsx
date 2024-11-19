@@ -43,7 +43,7 @@ export default function Model(props) {
     const materialProps = {
         thickness: 1,
         // roughness: 0.35,
-        roughness: 0.2,
+        roughness: 0.0,
         transmission: 1,
         ior: 1.2,
         chromaticAberration: 0.5,

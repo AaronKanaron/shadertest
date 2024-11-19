@@ -6,7 +6,8 @@ export default function Scene() {
     return (
         <Canvas style={{background: "#000000"}} >
             <Model />
-            <directionalLight intensity={2} position={[0, 2, 3]} />
+            {/* <directionalLight intensity={0} position={[0, 2, 3]} /> */}
+            <spotLight intensity={10} position={[2, 2, 5]} />
             <Environment preset='city' />
         </Canvas>
     )
