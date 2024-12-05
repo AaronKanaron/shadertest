@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useGLTF, Text, MeshTransmissionMaterial } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
+import { MeshBasicMaterial, Vector2, Vector4 } from 'three';
 // import { useControls } from 'leva'
 
 export default function Model(props) {
@@ -32,12 +33,14 @@ export default function Model(props) {
             const targetY = -cursor.y * Math.PI * 0.2;
             const targetZ = -cursor.x * Math.PI * 0.1; 
 
-            model.current.rotation.x += (Math.PI / 2 + targetY - model.current.rotation.x) * 0.1; // Base rotation of 90° + dynamic
-            // model.current.rotation.y += (targetX - model.current.rotation.y) * 0.1;
+            model.current.rotation.x += (Math.PI / 2 + targetY - model.current.rotation.x) * 0.1; 
             model.current.rotation.z += (targetZ - model.current.rotation.z) * 0.1;
 
             model.current.position.y = cursor.y * 0.05;
-            model.current.position.x = cursor.x * 0.1;
+            model.current.position.x = cursor.x * 0.15;
+            // console.log(model.current)
+
+            // model.current.material.uniforms.uMouse.value = cursor;
         }
     });
 
@@ -46,8 +49,8 @@ export default function Model(props) {
         // roughness: 0.35,
         roughness: 0.0,
         transmission: 1,
-        ior: 1.3,
-        chromaticAberration: 0.5,
+        ior: 1.2,
+        chromaticAberration: 0.0,
         backside: true,
     }
 
@@ -57,7 +60,9 @@ export default function Model(props) {
                 Aaron Clauss Portfolio 2024.
             </Text>
             <mesh ref={model} {...nodes.Text} >
-                <MeshTransmissionMaterial {...materialProps} />
+                {/* <MeshTransmissionMaterial {...materialProps} /> */}
+                {/* <meshBasicMaterial color={[2,0,0]} toneMapped={false}/> */}
+                <meshStandardMaterial emissive="red" emissiveIntensity={15} toneMapped={true} />
             </mesh>
         </group>
     )

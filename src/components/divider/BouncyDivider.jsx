@@ -29,7 +29,7 @@ const BouncyDivider = () => {
         let newProgress = progress * Math.sin(time);
         setPath(newProgress);
 
-        progress = lerp(progress, 0, 0.04);
+        progress = lerp(progress, 0, 0.05);
         time += 0.2;
 
         if(Math.abs(progress) > 0.5) {
