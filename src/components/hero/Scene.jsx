@@ -7,9 +7,9 @@ export default function Scene() {
     return (
         <Canvas className="canvas"  > {/*style={{background: "#020400"}}*/}
             <Model />
-            <directionalLight intensity={0.0} position={[0, 2, 3]} />
+            <directionalLight intensity={1.0} position={[0, 0, 3]} />
             <EffectComposer>
-                <Bloom intensity={.01}/>
+                <Bloom intensity={1}/>
             </EffectComposer>
             {/* <spotLight intensity={0} position={[2, 2, 5]} /> */}
             {/* <Environment preset='city' /> */}

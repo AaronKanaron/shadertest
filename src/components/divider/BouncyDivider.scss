@@ -1,3 +1,5 @@
+@use 'src/variables' as var;
+
 .line-container{
     width: 100%;
     display: flex;
@@ -25,7 +27,7 @@
     
             path{
                 stroke-width: 1px;
-                stroke: white;
+                stroke: var.$text-color;
                 fill: none;
             }
         }

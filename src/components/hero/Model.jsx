@@ -5,7 +5,7 @@ import { MeshBasicMaterial, Vector2, Vector4 } from 'three';
 // import { useControls } from 'leva'
 
 export default function Model(props) {
-    const { nodes } = useGLTF('https://aaronkanaron.github.io/shadertest/aaronpixel.glb');
+    const { nodes } = useGLTF('/shadertest/aaronpixel.glb');
     const { viewport, size } = useThree();
     const model = useRef(null);
 
@@ -62,7 +62,8 @@ export default function Model(props) {
             <mesh ref={model} {...nodes.Text} >
                 {/* <MeshTransmissionMaterial {...materialProps} /> */}
                 {/* <meshBasicMaterial color={[2,0,0]} toneMapped={false}/> */}
-                <meshStandardMaterial emissive="red" emissiveIntensity={15} toneMapped={true} />
+                <meshStandardMaterial emissive="#800000" emissiveIntensity={5.598} />
+                {/* <meshBasicMaterial color="green" toneMapped={false} /> */}
             </mesh>
         </group>
     )
