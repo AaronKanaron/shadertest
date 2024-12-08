@@ -5,7 +5,7 @@ import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 export default function Scene() {
     return (
-        <Canvas className="canvas" style={{background: "#020400"}} >
+        <Canvas className="canvas"  > {/*style={{background: "#020400"}}*/}
             <Model />
             <directionalLight intensity={0.0} position={[0, 2, 3]} />
             <EffectComposer>

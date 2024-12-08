@@ -56,9 +56,9 @@ export default function Model(props) {
 
     return (
         <group scale={viewport.width / 3.75} {...props} dispose={null}>
-            <Text maxWidth={3.52} textAlign="center" font={"https://aaronkanaron.github.io/shadertest/fonts/Italianno-Regular.ttf"} position={[0, 0, -1]} fontSize={0.8} color="white" anchorX="center" anchorY="middle">
+            {/* <Text maxWidth={3.52} textAlign="center" font={"https://aaronkanaron.github.io/shadertest/fonts/Italianno-Regular.ttf"} position={[0, 0, -1]} fontSize={0.8} color="white" anchorX="center" anchorY="middle">
                 Aaron Clauss Portfolio 2024.
-            </Text>
+            </Text> */}
             <mesh ref={model} {...nodes.Text} >
                 {/* <MeshTransmissionMaterial {...materialProps} /> */}
                 {/* <meshBasicMaterial color={[2,0,0]} toneMapped={false}/> */}
