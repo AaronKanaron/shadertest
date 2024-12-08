@@ -11,21 +11,10 @@ export default function StickyCursor({stickyElement}) {
     // const cursorSize = {x: isHovered ? 60: 20,
     //                     y: isHovered ? 60: 20};
     const cursor = useRef(null);
-
-    const transforms = {
-        x: useMotionValue(1),
-        y: useMotionValue(1),
-        rot: 0,
-    }
     
     const mouse = {
         x: useMotionValue(0),
         y: useMotionValue(0),
-    }
-
-    const rotate = (distance, scaleX, scaleY) => {
-        const angle = Math.atan2(distance.y, distance.x);
-        animate(cursor.current, { rotate: `${angle}rad`, scaleX, scaleY}, {duration: 0.2})
     }
 
 
@@ -44,7 +33,6 @@ export default function StickyCursor({stickyElement}) {
 
         if (isHovered) {
             const distance = {x: clientX - center.x, y: clientY - center.y};
-            const absDistance = Math.max(Math.abs(distance.x), Math.abs(distance.y));
 
             // const newScaleX = transform(absDistance, [0, height / 2], [1, 1.3])
             // const newScaleY = transform(absDistance, [0, width / 2], [1, .8])
@@ -55,7 +43,6 @@ export default function StickyCursor({stickyElement}) {
 
             mouse.x.set((center.x - cursorSize.x / 2) + (distance.x * 0.1))
             mouse.y.set((center.y - cursorSize.y / 2) + (distance.y * 0.1))
-            console.log("Scale", transforms.x.get(), transforms.y.get())
         } 
         else {
             mouse.x.set(clientX - cursorSize.x / 2);
@@ -69,18 +56,14 @@ export default function StickyCursor({stickyElement}) {
 
     const manageMouseLeave = e => {
         setIsHovered(false);
-        animate(cursor.current, { scaleX: 1, scaleY: 1 }, {duration: 0.1}, { type: "spring" })
+        // animate(cursor.current, { scaleX: 1, scaleY: 1 }, {duration: 0.1}, { type: "spring" })
     }
 
     const manageMousePress = () => {
         animate(cursor.current, {
-            scale: 1.5,
+            scale: 1.2,
         }, {
-            duration: 0.05
-        }, {
-            type: "spring",
-            stiffness: 200,
-            damping: 10,
+            duration: 0.1
         });
     }
 
@@ -120,12 +103,9 @@ export default function StickyCursor({stickyElement}) {
     return (
         <div className='cursor-container'>
             <motion.div
-            transformTemplate={template}
             style={{
                 left: smoothMouse.x,
                 top: smoothMouse.y,
-                scaleX: transforms.x,
-                scaleY: transforms.y,
             }} 
             animate={{
                 width: cursorSize.x,
